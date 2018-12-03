@@ -25,5 +25,6 @@ public class TerminalStream {
         // 判断
         Boolean result2 = data.stream().anyMatch(r->r.equals("c"));
         System.out.println("找到字符串c " + result2);
+
     }
 }
