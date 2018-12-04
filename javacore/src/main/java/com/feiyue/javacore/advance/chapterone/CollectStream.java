@@ -49,10 +49,16 @@ public class CollectStream {
         System.out.println("字符串拼接结果：" + result);
 
         // toMap, toConcurrentMap 收集到映射表map中
-        Map<String, Integer> cMap = data.parallelStream()
-                .collect(Collectors.toConcurrentMap(String::trim, String::length, (oldValue, currentValue)->currentValue));
+        // Collections.singleton() 单例集
+        Map<String, Set<Integer>> cMap = data.parallelStream()
+                .collect(Collectors.toConcurrentMap(String::trim, l->Collections.singleton(l.length()), (a, b)->
+                {
+                  Set<Integer> union = new HashSet<>(a);
+                  union.addAll(b);
+                  return union;
+                }));
         System.out.println("遍历concurrentMap: ");
-        for(Map.Entry<String, Integer> entry : cMap.entrySet()){
+        for(Map.Entry<String, Set<Integer>> entry : cMap.entrySet()){
             System.out.println(entry.getKey() + " " + entry.getValue());
         }
 
