@@ -35,8 +35,9 @@ public class OptionalUsage {
         // Optional 对象存在，map 消费，有返回值
         Optional<String> optionalString5 = data.stream().filter(r->r.equals("c")).findAny();
         String result = optionalString5.orElse(getDefaultString());
-        if(optionalString5.isPresent())
+        if(optionalString5.isPresent()) {
             result = optionalString5.map(r->"_" + r + "_").get();  // _a_
+        }
         System.out.println("map consumer the optional value, result=" + result);
 
         // 使用 flatMap 构建 Optional 值的函数

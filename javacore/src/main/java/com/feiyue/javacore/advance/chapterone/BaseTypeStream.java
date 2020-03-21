@@ -1,5 +1,6 @@
 package com.feiyue.javacore.advance.chapterone;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
@@ -9,6 +10,10 @@ import java.util.stream.IntStream;
 public class BaseTypeStream {
 
     public static void main(String[] args){
+
+        // 将 Integer 对象流转换为 int 基本类型的流
+        Integer[] data = new Integer[]{1, 2, 3, 4};
+        Arrays.stream(data).mapToInt(r->r.intValue()).average();
 
         // 基本类型流
         OptionalDouble average = IntStream.of(1, 2, 3, 4, 5).average();

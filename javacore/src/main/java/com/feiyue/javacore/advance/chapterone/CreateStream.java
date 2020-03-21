@@ -1,5 +1,8 @@
 package com.feiyue.javacore.advance.chapterone;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -12,6 +15,9 @@ public class CreateStream {
         Stream s = Stream.of("1", 2, "3", 4);
         Long count = s.filter(r->r.equals("2")).count();
         System.out.println(count);
+
+        String[] strArray = new String[]{"1", "2"};
+        Stream stream = Arrays.stream(strArray, 0, 1);
 
         // 2 Stream.generate 方法生成流
         List<String> list = Stream.generate(()->"hello").limit(3).collect(Collectors.toList());
